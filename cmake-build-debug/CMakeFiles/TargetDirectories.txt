@@ -1,0 +1,3 @@
+C:/bernie/pw/SEM VI/PJC/cmake-build-debug/CMakeFiles/PJC.dir
+C:/bernie/pw/SEM VI/PJC/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/bernie/pw/SEM VI/PJC/cmake-build-debug/CMakeFiles/rebuild_cache.dir

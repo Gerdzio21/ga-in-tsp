@@ -1,0 +1,96 @@
+Problem komiwojażera:
+Klasa Abstrakcyjna GeneticAlgorithm
+
+Gen - Lista Obiektów
+Metody Krzyżowania
+Metody dziedziczenia
+Metody mutacji
+Metoda generacji określonej liczby pokoleń
+Metoda generacji liczby pokoleń, aż do wpadnięcia w minimum lokalnej
+
+Funkcja oceniająca długość scieżki.
+
+Generacja labiryntu:
+
+Wizualizacja:
+Tworzenie grafiki
+
+Gracz:
+Pomiar długości przebytej drogi
+Ocenianie z rozwiązaniem komputerowym.
+Wizualizacja drogi jakiej przeszedł gracz.
+Wizualizacja drogi jaką wybrał komputer.
+
+
+
+Projektując system informatyczny, rozpoczyna się przeważnie od tworzenia diagramów w następującej kolejności:
+http://algorytmy.ency.pl/tutorial/problem_komiwojazera_algorytm_genetyczny
+Przypadków użycia
+Sekwencji
+Klas
+Czynności
+Są to najczęściej wykorzystywane diagramy. Pozostałe bywają pomijane, zwłaszcza przy budowaniu niedużych systemów informatycznych.
+
+
+https://pl.wikipedia.org/wiki/Diagram_przypadk%C3%B3w_u%C5%BCycia
+https://pl.wikipedia.org/wiki/Diagram_interakcji
+https://pl.wikipedia.org/wiki/Diagram_klas
+https://pl.wikipedia.org/wiki/Diagram_czynno%C5%9Bci
+
+git origin
+git fetch
+git commit
+git checkout
+git branch
+git push
+
+
+
+
+
+
+
+
+ Róźnica miedzy obiektem mutowalny a niemutowalnym?
+
+ Inferencja typów
+
+ Różnica pomiędzy referencją a wskaźnikiem.
+
+ Kapsulacja i enkapsulacja.
+
+ Entity(pl. encja)
+
+ Hermetyzacja danych
+
+ Metody statyczne?
+
+ Prywatne konstruktory
+
+ Rozróżnialność funkcji ze względu na parametry.
+
+ Czym jest kolekcja?
+
+ Klasa/metoda generyczna?
+
+ Klasa/metoda abstrakcyjna?
+
+ Czym jest interfejs?
+
+ Czym jest polimorfizm?
+
+ Co to jezyk funkcyjny?
+
+ Garbage Collector
+
+ Lukier składiowy
+
+ Kompozycja a agregacja
+
+
+
+
+
+
+
+
