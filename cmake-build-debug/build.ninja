@@ -73,6 +73,12 @@ build CMakeFiles/PJC.dir/Genome.cpp.obj: CXX_COMPILER__PJC_Debug C$:/bernie/pw/S
   OBJECT_DIR = CMakeFiles\PJC.dir
   OBJECT_FILE_DIR = CMakeFiles\PJC.dir
 
+build CMakeFiles/PJC.dir/GeneticAlgorithmForTSP.cpp.obj: CXX_COMPILER__PJC_Debug C$:/bernie/pw/SEM$ VI/PJC/GeneticAlgorithmForTSP.cpp || cmake_object_order_depends_target_PJC
+  DEP_FILE = CMakeFiles\PJC.dir\GeneticAlgorithmForTSP.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\PJC.dir
+  OBJECT_FILE_DIR = CMakeFiles\PJC.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target PJC
@@ -81,7 +87,7 @@ build CMakeFiles/PJC.dir/Genome.cpp.obj: CXX_COMPILER__PJC_Debug C$:/bernie/pw/S
 #############################################
 # Link the executable PJC.exe
 
-build PJC.exe: CXX_EXECUTABLE_LINKER__PJC_Debug CMakeFiles/PJC.dir/main.cpp.obj CMakeFiles/PJC.dir/GeneticAlgorithm.cpp.obj CMakeFiles/PJC.dir/Generation.cpp.obj CMakeFiles/PJC.dir/Genome.cpp.obj
+build PJC.exe: CXX_EXECUTABLE_LINKER__PJC_Debug CMakeFiles/PJC.dir/main.cpp.obj CMakeFiles/PJC.dir/GeneticAlgorithm.cpp.obj CMakeFiles/PJC.dir/Generation.cpp.obj CMakeFiles/PJC.dir/Genome.cpp.obj CMakeFiles/PJC.dir/GeneticAlgorithmForTSP.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\PJC.dir
