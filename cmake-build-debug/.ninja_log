@@ -1,6 +1,0 @@
-# ninja log v5
-1	388	7005807337064403	CMakeFiles/PJC.dir/main.cpp.obj	b521cc68501cb77
-179	434	7011036094266762	PJC.exe	791f6da011ed1d99
-11	178	7011036091709984	CMakeFiles/PJC.dir/Genome.cpp.obj	71e6ec52ce6ff38c
-7	173	7011036091699993	CMakeFiles/PJC.dir/GeneticAlgorithm.cpp.obj	d51eeb9613e19bbf
-2	179	7011036091720022	CMakeFiles/PJC.dir/Generation.cpp.obj	278986a30871e688

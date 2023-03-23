@@ -6,7 +6,7 @@
 #define PJC_GENETICALGORITHMFORTSP_H
 
 
-class GeneticAlgorithmForTSP {
+class GeneticAlgorithmForTSP: protected GeneticAlgorithm{
 
 };
 
