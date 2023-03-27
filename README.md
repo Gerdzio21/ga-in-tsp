@@ -1,4 +1,4 @@
-git # Genetic Algorithm in Travelling Salesman Problem
+# Genetic Algorithm in Travelling Salesman Problem
 ## Programming in C++ course
 <p align="center" >
 <img src="https://www.ch.pw.edu.pl/var/ch/storage/images/media/images/logo-pw-duze/14891-1-pol-PL/Logo-PW-duze.jpg" width="150px">
