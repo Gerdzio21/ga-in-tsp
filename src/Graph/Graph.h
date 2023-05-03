@@ -8,33 +8,30 @@
 #include <string>
 #include <list>
 #include <map>
-
+#include <vector>
 namespace graph {
-    struct Connection{
-        std::string neighbourName;
-        unsigned int edgeWeight;
+    enum Algorithms {
+        DIJKSTRA = 0
     };
-    struct ShortestPath{
+
+    struct ShortestPath {
         std::list<std::string> shortestPath;
         unsigned int shortestPathCost;
     };
-    template<typename shortestPathAlgorithmStaticFunction>
     class Graph {
-        std::map<std::string,std::list<Connection>> vertices;
-        std::list<std::string> importantVertices;
+        //std::map<std::string,std::vector<Connection >> vertices;
+        std::vector<std::string> importantVertices;
         ShortestPath shortestPathThroughImportantVertices;
-        shortestPathAlgorithmStaticFunction shortestPathAlgorithm;
-
-        public: virtual void generate()=0;
-        public: virtual void readFromFile(std::string fileName)=0;
-
-        public: void addVertex();
-        public: void addImportantVertex();
-        public: void removeVertex();
-        public: void removeImportantVertex();
-        public: bool isVertexExsist(std::string name);
-        public: std::list<std::string>getShortestPath();
-        private: std::list<std::string> getVerticesConnectedToTheVertex(std::string);
+        //public: void addVertex(const std::string& vertexName, std::vector<Connection>& conections) {
+        //    vertices[vertexName] = conections;
+        //}
+        public: void addImportantVertex(std::string& vertexName) {
+            importantVertices.push_back(vertexName);
+        }
+        public: std::list<std::string>getShortestPath(Algorithms pathAlgorithm);
+        //private: bool isVertexExsist(std::string name) {
+        //    return vertices.find(name) != vertices.end();
+        //}
     };
 
 } // graph
