@@ -8,6 +8,7 @@
 
 #include <stack>
 #include <utility>
+#include <iostream>
 #include "Graph.h"
 
 namespace graph {
@@ -18,8 +19,7 @@ namespace graph {
         const int ID;
     public:
         Vertex(std::string n, int id) : name(std::move(n)), ID(id) {}
-
-        int getID() {
+        [[nodiscard]] int getID() const{
             return ID;
         }
     };
@@ -33,15 +33,10 @@ namespace graph {
 
     class Maze2D {
     public:
-        unsigned int width;
-        unsigned int height;
-        unsigned int markingProb;
-        unsigned int breakThroughProb;
-
+        unsigned int width, height, markingProb, breakThroughProb;
         struct Coordinates {
             int x;
             int y;
-
             Coordinates(int x, int y) : x(x), y(y) {}
         };
         std::map<Vertex *, bool> visitedVertex;
@@ -68,7 +63,7 @@ namespace graph {
                 }
             }
         }
-        virtual void generate() {
+        void generate() {
             std::stack<Vertex *> stack;
             auto* startingVertex = verticesPtrArrayList[0];
             visitedVertex[startingVertex] = true;
@@ -78,15 +73,8 @@ namespace graph {
                 stack.pop();
                 int id = currentVertex->getID();
                 Coordinates vertexCoordinates = getCoordinatesFromId(id);
-                auto n = vertexCoordinates.x;
-                auto m = vertexCoordinates.y;
                 chooseAndMarkAsImportant(id);
                 std::vector<Vertex *> notVisitedNeighbours = getNotVisitedNeighbours(vertexCoordinates);
-
-                // select unvisited neighbour,
-                // delete wall between currentCell and the chosen
-                // mark the chosen as visited
-                // append chosen to LIFO
                 if (!notVisitedNeighbours.empty()) {
                     auto *theChosenOne = getRandomUnvisitedNeighbour(notVisitedNeighbours);
                     visitedVertex[theChosenOne] = true;
@@ -94,6 +82,8 @@ namespace graph {
                     stack.push(theChosenOne);
                     createConnection(currentVertex, theChosenOne);
                 }
+                //auto n = vertexCoordinates.x;
+                //auto m = vertexCoordinates.y;
                 /*
                  * CODE TO PASTE
                  */
@@ -126,28 +116,28 @@ namespace graph {
         }
 
         void addLeftIfItIsPossible(std::vector<Vertex *> &notVisitedNeighbours, Coordinates vertexCoordinates) {
-            if (vertexCoordinates.x != 0) {
+            if (vertexCoordinates.x - 1 >= 0) {
                 int id = getIdFromCoordinates(vertexCoordinates.x - 1, vertexCoordinates.y);
                 addToNotVisitedNeighbours(notVisitedNeighbours, verticesPtrArrayList[id]);
             }
         }
 
         void addRightIfItIsPossible(std::vector<Vertex *> &notVisitedNeighbours, Coordinates vertexCoordinates) {
-            if (vertexCoordinates.x != width - 1) {
+            if (vertexCoordinates.x + 1 < width) {
                 int id = getIdFromCoordinates(vertexCoordinates.x + 1, vertexCoordinates.y);
                 addToNotVisitedNeighbours(notVisitedNeighbours, verticesPtrArrayList[id]);
             }
         }
 
         void addUpperIfItIsPossible(std::vector<Vertex *> &notVisitedNeighbours, Coordinates vertexCoordinates) {
-            if (vertexCoordinates.y != 0) {
+            if (vertexCoordinates.y - 1 >= 0) {
                 int id = getIdFromCoordinates(vertexCoordinates.x, vertexCoordinates.y - 1);
                 addToNotVisitedNeighbours(notVisitedNeighbours, verticesPtrArrayList[id]);
             }
         }
 
         void addLowerIfItIsPossible(std::vector<Vertex *> &notVisitedNeighbours, Coordinates vertexCoordinates) {
-            if (vertexCoordinates.y != height - 1) {
+            if (vertexCoordinates.y+1 < height) {
                 int id = getIdFromCoordinates(vertexCoordinates.x, vertexCoordinates.y + 1);
                 addToNotVisitedNeighbours(notVisitedNeighbours, verticesPtrArrayList[id]);
             }
@@ -160,8 +150,8 @@ namespace graph {
         }
         [[nodiscard]] Coordinates getCoordinatesFromId(
                 int id) const { //[[nodiscard]], kompilator generuje ostrzeżenie, jeśli wynik funkcji jest ignorowany.
-            int y = id % width;
-            int x = id - y * width;
+            int y = id / width;
+            int x = id % width;
             return {x, y};
         }
 
