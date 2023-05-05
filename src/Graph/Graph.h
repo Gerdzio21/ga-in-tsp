@@ -9,7 +9,6 @@
 #include <list>
 #include <map>
 #include <vector>
-namespace graph {
     enum Algorithms {
         DIJKSTRA = 0
     };
@@ -33,7 +32,5 @@ namespace graph {
         //    return vertices.find(name) != vertices.end();
         //}
     };
-
-} // graph
 
 #endif //PJC_GRAPH_H

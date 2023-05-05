@@ -10,40 +10,20 @@
 #include <utility>
 #include <iostream>
 #include "Graph.h"
+#include "Vertex.h"
+#include "Connection.h"
+#include "Coordinates.h"
+#include "AccessForbiddenException.h"
 
-namespace graph {
-
-    class Vertex {
-    private:
-        const std::string name;
-        const int ID;
-    public:
-        Vertex(std::string n, int id) : name(std::move(n)), ID(id) {}
-        [[nodiscard]] int getID() const{
-            return ID;
-        }
-    };
-
-    class Connection {
-        Vertex *neighbour;
-        unsigned int edgeWeight;
-    public:
-        Connection(Vertex *vertexPtr, unsigned int w) : neighbour(vertexPtr), edgeWeight(w) {}
-    };
-
-    class Maze2D {
+class Maze2D {
     public:
         unsigned int width, height, markingProb, breakThroughProb;
-        struct Coordinates {
-            int x;
-            int y;
-            Coordinates(int x, int y) : x(x), y(y) {}
-        };
+        const unsigned int maxIDNumber;
         std::map<Vertex *, bool> visitedVertex;
         std::map<Vertex *, std::vector<Connection>> vertices;
         std::vector<Vertex *> importantVertices;
         std::vector<Vertex *> verticesPtrArrayList;
-        Maze2D(unsigned int width, unsigned int height, unsigned int markingProb, unsigned int breakThroughProb) {
+        Maze2D(unsigned int width, unsigned int height, unsigned int markingProb, unsigned int breakThroughProb) : maxIDNumber(width*height-1) {
             this->width = width;
             this->height = height;
             this->markingProb = markingProb;
@@ -82,11 +62,35 @@ namespace graph {
                     stack.push(theChosenOne);
                     createConnection(currentVertex, theChosenOne);
                 }
-                //auto n = vertexCoordinates.x;
-                //auto m = vertexCoordinates.y;
-                /*
-                 * CODE TO PASTE
-                 */
+                //small improvement - creating breakthrough
+                createBreakthrough(currentVertex, vertexCoordinates, notVisitedNeighbours);
+            }
+        }
+
+        void createBreakthrough(Vertex *currentVertex, const Coordinates &vertexCoordinates,
+                                 const std::vector<Vertex *> &notVisitedNeighbours) {
+            int n = vertexCoordinates.x;
+            int m = vertexCoordinates.y;
+            if (!notVisitedNeighbours.empty()) {
+                if (breakThroughProb > rand() / RAND_MAX) {
+                    int x = 0;
+                    int y = -1;
+                    auto direction = rand() % 3;
+                    if (direction == 0) {
+                        int x = -1;
+                        int y = 0;
+                    } else if (direction == 1) {
+                        int x = 1;
+                        int y = 0;
+                    } else if (direction == 2) {
+                        int x = 0;
+                        int y = 1;
+                    }
+                    if (n + x >= 0 && n + x < width && m + y >= 0 && m + y < height) {
+                        auto* selectedVertex = verticesPtrArrayList[getIdFromCoordinates(n + x, m + y)];
+                        createConnection(currentVertex, selectedVertex);
+                    }
+                }
             }
         }
 
@@ -156,33 +160,11 @@ namespace graph {
         }
 
         [[nodiscard]] int getIdFromCoordinates(int x, int y) const {
-            return y * width + x;
+            int id = y * width + x;
+            if (id > maxIDNumber || id < 0)
+                throw AccessForbiddenException();
+            else return id;
         }
-    };
-}
-
-//CODE TO PASTE
-//small improvement - creating breakthtrought
-//                if (!notVisitedNeighbours.empty()) {
-//                    if (breakThroughProb > rand() / RAND_MAX) {
-//                        int x = 0;
-//                        int y = -1;
-//                        auto direction = rand() % 3;
-//                        if (direction == 0) {
-//                            int x = -1;
-//                            int y = 0;
-//                        } else if (direction == 1) {
-//                            int x = 1;
-//                            int y = 0;
-//                        } else if (direction == 2) {
-//                            int x = 0;
-//                            int y = 1;
-//                        }
-//                        if (n + x >= 0 && n + x < width && m + y >= 0 && m + y < height) {
-//                            auto* selectedVertex = verticesPtrArrayList[getIdFromCoordinates(n+x,m+y)];
-//                            createConnection(currentVertex,selectedVertex);
-//                        }
-//                    }
-//                }
+};
 
 #endif //PJC_MAZE2D_H
