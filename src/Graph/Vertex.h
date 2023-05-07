@@ -18,6 +18,9 @@ public:
     [[nodiscard]] int getID() const {
         return ID;
     }
+    [[nodiscard]] std::string getName() const {
+        return name;
+    }
 };
 
 

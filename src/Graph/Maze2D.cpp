@@ -3,3 +3,7 @@
 //
 
 #include "Maze2D.h"
+
+void Maze2D::draw() {
+    std::cout<<"drawing"<<std::endl;
+}

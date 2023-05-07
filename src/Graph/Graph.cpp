@@ -4,6 +4,14 @@
 
 #include "Graph.h"
 
-namespace graph {
+void Graph::findPath() {
 
-} // graph
+}
+
+void Graph::readFromFile() {
+
+}
+
+void Graph::saveToFile() {
+
+}

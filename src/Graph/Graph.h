@@ -6,31 +6,54 @@
 #define PJC_GRAPH_H
 
 #include <string>
-#include <list>
 #include <map>
 #include <vector>
-    enum Algorithms {
-        DIJKSTRA = 0
-    };
+#include <algorithm>
+#include "Vertex.h"
+#include "Connection.h"
+#include "VertexDoesntExsistException.h"
 
-    struct ShortestPath {
-        std::list<std::string> shortestPath;
-        unsigned int shortestPathCost;
-    };
-    class Graph {
-        //std::map<std::string,std::vector<Connection >> vertices;
-        std::vector<std::string> importantVertices;
-        ShortestPath shortestPathThroughImportantVertices;
-        //public: void addVertex(const std::string& vertexName, std::vector<Connection>& conections) {
-        //    vertices[vertexName] = conections;
-        //}
-        public: void addImportantVertex(std::string& vertexName) {
-            importantVertices.push_back(vertexName);
+class Graph {
+protected:
+    std::map<Vertex *, std::vector<Connection>> vertices;
+    std::vector<Vertex *> importantVertices;
+    std::vector<Vertex *> verticesPtrArrayList;
+public:
+    virtual void draw() = 0;
+
+    void findPath();
+
+    void readFromFile();
+
+    void saveToFile();
+
+
+    void addImportantVertex(Vertex *vertexPtr) {
+        if (std::find(verticesPtrArrayList.begin(), verticesPtrArrayList.end(), vertexPtr) !=
+            verticesPtrArrayList.end()) {
+            importantVertices.push_back(vertexPtr);
+        } else {
+            throw VertexDoesntExsistException();
         }
-        public: std::list<std::string>getShortestPath(Algorithms pathAlgorithm);
-        //private: bool isVertexExsist(std::string name) {
-        //    return vertices.find(name) != vertices.end();
-        //}
-    };
+    }
+
+    void removeImportantVertex(Vertex *vertexPtr) {
+        auto it = std::find(verticesPtrArrayList.begin(), verticesPtrArrayList.end(), vertexPtr);
+        if (it != verticesPtrArrayList.end()) {
+            importantVertices.erase(it);
+        } else {
+            throw VertexDoesntExsistException();
+        }
+    }
+    Vertex* getVertexByName(std::string vertexName){
+        for(auto* vertex : verticesPtrArrayList) {
+            if(vertex->getName() == vertexName){
+                return vertex;
+            }else{
+                throw VertexDoesntExsistException();
+            }
+        }
+    }
+};
 
 #endif //PJC_GRAPH_H

@@ -6,4 +6,4 @@ set(SOURCES ${SOURCES})
 
 add_executable(${BINARY}_run ${SOURCES})
 
-add_library(${BINARY}_lib STATIC ${SOURCES} Graph/Maze2D.cpp Graph/Maze2D.h Graph/RandKruskalMaze.cpp Graph/RandKruskalMaze.h Graph/Vertex.cpp Graph/Vertex.h Graph/Connection.cpp Graph/Connection.h Graph/Coordinates.cpp Graph/Coordinates.h Graph/AccessForbiddenException.cpp Graph/AccessForbiddenException.h)
+add_library(${BINARY}_lib STATIC ${SOURCES} Graph/Maze2D.cpp Graph/Maze2D.h Graph/RandKruskalMaze.cpp Graph/RandKruskalMaze.h Graph/Vertex.cpp Graph/Vertex.h Graph/Connection.cpp Graph/Connection.h Graph/Coordinates.cpp Graph/Coordinates.h Graph/AccessForbiddenException.cpp Graph/AccessForbiddenException.h Graph/KruskalMaze.cpp Graph/KruskalMaze.h Manager.cpp Manager.h UnknownMazeCreationAlgorithmException.cpp UnknownMazeCreationAlgorithmException.h Graph/VertexDoesntExsistException.cpp Graph/VertexDoesntExsistException.h)
