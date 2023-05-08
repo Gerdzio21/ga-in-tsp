@@ -16,9 +16,13 @@ public:
         this->breakThroughProb = breakThroughProb;
     }
     void generate() override;
+
+
+
 private:
     void createBreakthrough(Vertex *currentVertex, const Coordinates &vertexCoordinates,
                             const std::vector<Vertex *> &notVisitedNeighbours);
+
 };
 
 

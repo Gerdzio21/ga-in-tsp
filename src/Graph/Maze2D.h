@@ -31,6 +31,8 @@ public:
     }
     void draw() override;
     virtual void generate() = 0;
+    virtual void readFromFile(std::string) = 0;
+    virtual void saveToFile(std::string path,std::string name) = 0;
 
     void createVerticesPtrArrayList() {
         for (int i = 0; i < height; i++) {
@@ -53,6 +55,9 @@ public:
         if (id > maxIDNumber || id < 0)
             throw AccessForbiddenException();
         else return id;
+    }
+    [[nodiscard]] int getIdByVertexIdx(int idx){
+        return idx<verticesPtrArrayList.size() ? verticesPtrArrayList[idx]->getID() : throw AccessForbiddenException();
     }
 };
 

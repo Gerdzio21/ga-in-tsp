@@ -2,10 +2,13 @@
 // Created by gerdzio21 on 05.05.2023.
 //
 
+#include <fstream>
 #include "KruskalMaze.h"
-void KruskalMaze::generate(){
+#include "WrongFileException.h"
+
+void KruskalMaze::generate() {
     std::stack<Vertex *> stack;
-    auto* startingVertex = verticesPtrArrayList[0];
+    auto *startingVertex = verticesPtrArrayList[0];
     visitedVertex[startingVertex] = true;
     stack.push(startingVertex);
     while (!stack.empty()) {
@@ -24,6 +27,7 @@ void KruskalMaze::generate(){
         }
     }
 }
+
 Vertex *KruskalMaze::getRandomUnvisitedNeighbour(
         const std::vector<Vertex *> &notVisitedNeighbours) const {
     return notVisitedNeighbours[(rand() % notVisitedNeighbours.size())];
@@ -71,14 +75,31 @@ void KruskalMaze::addUpperIfItIsPossible(std::vector<Vertex *> &notVisitedNeighb
 }
 
 void KruskalMaze::addLowerIfItIsPossible(std::vector<Vertex *> &notVisitedNeighbours, Coordinates vertexCoordinates) {
-    if (vertexCoordinates.y+1 < height) {
+    if (vertexCoordinates.y + 1 < height) {
         int id = getIdFromCoordinates(vertexCoordinates.x, vertexCoordinates.y + 1);
         addToNotVisitedNeighbours(notVisitedNeighbours, verticesPtrArrayList[id]);
     }
 }
 
-void KruskalMaze::addToNotVisitedNeighbours(std::vector<Vertex *> &notVisitedNeighbours, Vertex* vertex) {
+void KruskalMaze::addToNotVisitedNeighbours(std::vector<Vertex *> &notVisitedNeighbours, Vertex *vertex) {
     if (!visitedVertex[vertex]) {
         notVisitedNeighbours.push_back(vertex);
     }
+}
+
+void KruskalMaze::saveToFile(std::string path, std::string fileName) {
+    std::fstream file;
+    file.open(path + fileName + ".maze", std::ios::out);
+    if (file.good()) {
+        std::cout << "zapisywanie";
+    } else throw WrongFileException();
+}
+
+void KruskalMaze::readFromFile(std::string path) {
+    //add extension verification
+    std::fstream file;
+    file.open(path , std::ios::out);
+    if (file.good()) {
+        std::cout << "odczytywanie";
+    } else throw WrongFileException();
 }

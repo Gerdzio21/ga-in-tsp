@@ -19,13 +19,13 @@ protected:
     std::vector<Vertex *> importantVertices;
     std::vector<Vertex *> verticesPtrArrayList;
 public:
-    virtual void draw() = 0;
-
     void findPath();
 
-    void readFromFile();
+    virtual void draw() = 0;
 
-    void saveToFile();
+    virtual void readFromFile(std::string) = 0;
+
+    virtual void saveToFile(std::string path,std::string name) = 0;
 
 
     void addImportantVertex(Vertex *vertexPtr) {

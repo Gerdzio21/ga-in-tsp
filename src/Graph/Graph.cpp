@@ -4,14 +4,7 @@
 
 #include "Graph.h"
 
+
 void Graph::findPath() {
-
-}
-
-void Graph::readFromFile() {
-
-}
-
-void Graph::saveToFile() {
 
 }

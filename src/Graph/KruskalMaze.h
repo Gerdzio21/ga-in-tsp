@@ -40,6 +40,8 @@ private:
 
 public:
     void generate() override;
+    void saveToFile(std::string path, std::string fileName) override;
+    void readFromFile(std::string path) override;
 
 private:
 

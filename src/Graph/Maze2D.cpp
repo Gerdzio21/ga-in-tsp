@@ -7,3 +7,5 @@
 void Maze2D::draw() {
     std::cout<<"drawing"<<std::endl;
 }
+
+

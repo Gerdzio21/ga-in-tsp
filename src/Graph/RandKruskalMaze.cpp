@@ -2,7 +2,10 @@
 // Created by gerdzio21 on 05.05.2023.
 //
 
+
 #include "RandKruskalMaze.h"
+
+
 void RandKruskalMaze::generate() {
     std::stack<Vertex *> stack;
     auto* startingVertex = verticesPtrArrayList[0];
@@ -52,3 +55,7 @@ void RandKruskalMaze::createBreakthrough(Vertex *currentVertex, const Coordinate
         }
     }
 }
+
+
+
+
